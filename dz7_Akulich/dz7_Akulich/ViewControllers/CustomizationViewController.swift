@@ -11,6 +11,8 @@ final class CustomizationViewController: UIViewController {
     
     static let identifier = "CustomizationViewController"
     
+    weak var userSettings: UserSettings?
+    
     var delegate: CustomizationViewControllerDelegate?
     
     @IBOutlet weak var avatarButton: UIButton!
@@ -30,6 +32,8 @@ final class CustomizationViewController: UIViewController {
         saveButton.setupBorderedButton(title: "Save", borderColor: .systemPurple)
         saveButton.backgroundColor = .systemPurple
         editButton.setupBorderedButton(title: "Edit", borderColor: .systemPurple)
+        
+        setupVC()
     }
     
     func updateSettings(nickname: String, imageName: String) {
@@ -65,5 +69,20 @@ final class CustomizationViewController: UIViewController {
         avatarButton.setTitleColor(.systemGray, for: .normal)
         avatarButton.layer.borderWidth = 1
         avatarButton.layer.borderColor = UIColor.systemPurple.cgColor
+    }
+    
+    private func setupVC(){
+        guard let userSettings = userSettings else { return }
+        if userSettings.avatarName == "No avatar" {
+            avatarButton.setTitle(userSettings.avatarName, for: .normal)
+        } else {
+            avatarButton.setImage(UIImage(systemName: userSettings.avatarName), for: .normal)
+            avatarButton.setTitle("", for: .normal)
+            avatarButton.titleLabel?.font = .systemFont(ofSize: 80)
+            avatarButton.setPreferredSymbolConfiguration(.init(pointSize: 100), forImageIn: .normal)
+            avatarButton.tintColor = .systemPurple
+            avatarButton.setTitleColor(.systemPurple, for: .normal)
+        }
+        nameLabel.text = userSettings.nickname
     }
 }

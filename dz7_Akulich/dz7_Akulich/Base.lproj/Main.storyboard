@@ -135,9 +135,7 @@
                                     <constraint firstAttribute="height" constant="240" id="qTV-nM-mdf"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="No Avatar">
-                                    <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="gray" title="No Avatar"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ktZ-nd-y1P"/>

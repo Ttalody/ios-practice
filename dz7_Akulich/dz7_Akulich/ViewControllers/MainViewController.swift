@@ -31,11 +31,8 @@ final class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let navController = storyboard.instantiateViewController(identifier: "navigationController") as? UINavigationController {
             if let customizationVC = navController.viewControllers[0] as? CustomizationViewController {
-                customizationVC.loadView()
-                customizationVC.viewDidLoad()
+                customizationVC.userSettings = UserSettings.shared
                 customizationVC.delegate = self
-                customizationVC.avatarButton.setTitle(avatarButton.currentTitle, for: .normal)
-                customizationVC.nameLabel.text = nameLabel.text
                 self.present(navController, animated: true)
             }
         }
