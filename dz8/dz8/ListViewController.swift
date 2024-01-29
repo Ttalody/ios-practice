@@ -35,6 +35,7 @@ class ListViewController: UIViewController {
     private func openNewPersonVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let vc = storyboard.instantiateViewController(identifier: NewPersonViewController.identifier) as? NewPersonViewController {
+            vc.delegate = self
             self.present(vc, animated: true)
         }
     }
@@ -56,5 +57,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ListViewController: NewPersonVCDelegate {
+    func addPerson(person: Person) {
+        personArray.append(person)
+        listTableView.reloadData()
     }
 }

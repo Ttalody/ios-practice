@@ -11,6 +11,8 @@ class NewPersonViewController: UIViewController {
     
     static let identifier = "NewPersonViewController"
     
+    weak var delegate: NewPersonVCDelegate?
+    
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -25,20 +27,37 @@ class NewPersonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameTextField.delegate = self
+        lastnameTextField.delegate = self
 
         setupButton(button: saveButton)
         setupButton(button: cancelButton)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let name = nameTextField.text, let lastname = lastnameTextField.text else { return }
+        
+        delegate?.addPerson(person: Person(name: name, lastname: lastname))
+        
+        self.dismiss(animated: true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     private func setupButton(button: UIButton) {
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.cornerRadius = 1
+        button.layer.borderWidth = 1
+        button.clipsToBounds = true
+        
+    }
+}
+
+extension NewPersonViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
     }
 }
