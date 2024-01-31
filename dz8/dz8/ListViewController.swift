@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
     var personArray: [Person] = [Person(name: "Vova", lastname: "Vova"),
                                  Person(name: "Aupa", lastname: "Lupa")]
     
-    var sections = [Section]()
+    private var sections = [Section]()
 
     @IBOutlet weak var listTableView: UITableView!
     

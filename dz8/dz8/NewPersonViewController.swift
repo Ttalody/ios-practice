@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewPersonViewController: UIViewController {
+final class NewPersonViewController: UIViewController {
     
     static let identifier = "NewPersonViewController"
     
