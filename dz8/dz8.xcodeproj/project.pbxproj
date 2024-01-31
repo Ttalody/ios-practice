@@ -17,6 +17,7 @@
 		757DF8102B5069D400A0D6B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DF80F2B5069D400A0D6B2 /* Person.swift */; };
 		757DF8122B506B9E00A0D6B2 /* NewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DF8112B506B9E00A0D6B2 /* NewPersonViewController.swift */; };
 		75BF4C422B67A69F000A9D1A /* NewPersonVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF4C412B67A69F000A9D1A /* NewPersonVCDelegate.swift */; };
+		75BF4C442B67AD66000A9D1A /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF4C432B67AD66000A9D1A /* Section.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		757DF80F2B5069D400A0D6B2 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		757DF8112B506B9E00A0D6B2 /* NewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonViewController.swift; sourceTree = "<group>"; };
 		75BF4C412B67A69F000A9D1A /* NewPersonVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonVCDelegate.swift; sourceTree = "<group>"; };
+		75BF4C432B67AD66000A9D1A /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				757DF8112B506B9E00A0D6B2 /* NewPersonViewController.swift */,
 				757DF80D2B5067F500A0D6B2 /* PersonTableViewCell.swift */,
 				757DF80F2B5069D400A0D6B2 /* Person.swift */,
+				75BF4C432B67AD66000A9D1A /* Section.swift */,
 				75BF4C412B67A69F000A9D1A /* NewPersonVCDelegate.swift */,
 				757DF7FF2B50675500A0D6B2 /* Main.storyboard */,
 				757DF8022B50675700A0D6B2 /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 				75BF4C422B67A69F000A9D1A /* NewPersonVCDelegate.swift in Sources */,
 				757DF7FE2B50675500A0D6B2 /* ListViewController.swift in Sources */,
 				757DF7FA2B50675500A0D6B2 /* AppDelegate.swift in Sources */,
+				75BF4C442B67AD66000A9D1A /* Section.swift in Sources */,
 				757DF80E2B5067F500A0D6B2 /* PersonTableViewCell.swift in Sources */,
 				757DF7FC2B50675500A0D6B2 /* SceneDelegate.swift in Sources */,
 			);

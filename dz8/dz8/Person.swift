@@ -12,3 +12,8 @@ struct Person {
     var lastname: String
 }
 
+extension Person: Comparable {
+    static func < (lhs: Person, rhs: Person) -> Bool {
+        lhs.name < rhs.name
+    }
+}

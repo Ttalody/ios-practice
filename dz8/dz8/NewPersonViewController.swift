@@ -38,7 +38,9 @@ class NewPersonViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = nameTextField.text, let lastname = lastnameTextField.text else { return }
         
-        delegate?.addPerson(person: Person(name: name, lastname: lastname))
+        let person = Person(name: name, lastname: lastname)
+        
+        delegate?.addPerson(person: person)
         
         self.dismiss(animated: true)
     }
@@ -52,7 +54,6 @@ class NewPersonViewController: UIViewController {
         button.layer.borderColor = UIColor.systemBlue.cgColor
         button.layer.borderWidth = 1
         button.clipsToBounds = true
-        
     }
 }
 

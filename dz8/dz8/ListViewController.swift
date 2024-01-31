@@ -10,7 +10,9 @@ import UIKit
 class ListViewController: UIViewController {
     
     var personArray: [Person] = [Person(name: "Vova", lastname: "Vova"),
-                                 Person(name: "Pupa", lastname: "Lupa")]
+                                 Person(name: "Aupa", lastname: "Lupa")]
+    
+    var sections = [Section]()
 
     @IBOutlet weak var listTableView: UITableView!
     
@@ -23,6 +25,8 @@ class ListViewController: UIViewController {
         
         listTableView.delegate = self
         listTableView.dataSource = self
+        
+        groupPersons()
     }
 
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -40,17 +44,34 @@ class ListViewController: UIViewController {
         }
     }
     
+    private func groupPersons() {
+        let groupedDict = Dictionary(grouping: personArray, by: {String($0.name).prefix(1).lowercased()})
+        let keys = groupedDict.keys.sorted()
+        sections = keys.map { Section(letter: String($0), persons: groupedDict[$0]!.sorted())}
+        listTableView.reloadData()
+    }
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        personArray.count
+        sections[section].persons.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].letter
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier) as? PersonTableViewCell else { return UITableViewCell() }
         
-        cell.configure(person: personArray[indexPath.row])
+        let section = sections[indexPath.section]
+        let person = section.persons[indexPath.row]
+        
+        cell.configure(person: person)
         
         return cell
     }
@@ -63,6 +84,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 extension ListViewController: NewPersonVCDelegate {
     func addPerson(person: Person) {
         personArray.append(person)
-        listTableView.reloadData()
+        groupPersons()
     }
 }
