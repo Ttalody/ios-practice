@@ -18,13 +18,13 @@ final class ListViewController: UIViewController {
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         listTableView.delegate = self
         listTableView.dataSource = self
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         groupPersons()
     }
@@ -33,8 +33,9 @@ final class ListViewController: UIViewController {
         openNewPersonVC()
     }
     
-    @IBAction func editButtonTapped(_ sender: Any) {
-    }
+//    private func editButtonTapped(_ sender: Navi) {
+//
+//    }
     
     private func openNewPersonVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -78,6 +79,13 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete: break
+        default: break
+        }
     }
 }
 
