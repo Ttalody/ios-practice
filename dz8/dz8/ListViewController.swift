@@ -95,3 +95,15 @@ extension ListViewController: NewPersonVCDelegate {
         groupPersons()
     }
 }
+
+
+
+
+
+
+
+
+struct aaaa {
+    var a: String
+}
+
