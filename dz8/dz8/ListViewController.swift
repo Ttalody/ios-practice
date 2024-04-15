@@ -9,11 +9,10 @@ import UIKit
 
 final class ListViewController: UIViewController {
     
-    var personArray: [Person] = [Person(name: "Vova", lastname: "Vova"),
-                                 Person(name: "Aupa", lastname: "Lupa")]
+    private var personArray: [Person] = []
     
     private var sections = [Section]()
-
+    
     @IBOutlet weak var listTableView: UITableView!
     
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -28,14 +27,16 @@ final class ListViewController: UIViewController {
         
         groupPersons()
     }
-
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        listTableView.setEditing(editing, animated: true)
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         openNewPersonVC()
     }
-    
-//    private func editButtonTapped(_ sender: Navi) {
-//
-//    }
     
     private func openNewPersonVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -46,7 +47,7 @@ final class ListViewController: UIViewController {
     }
     
     private func groupPersons() {
-        let groupedDict = Dictionary(grouping: personArray, by: {String($0.name).prefix(1).lowercased()})
+        let groupedDict = Dictionary(grouping: personArray, by: {String($0.name).prefix(1).uppercased()})
         let keys = groupedDict.keys.sorted()
         sections = keys.map { Section(letter: String($0), persons: groupedDict[$0]!.sorted())}
         listTableView.reloadData()
@@ -83,7 +84,27 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
-        case .delete: break
+        case .delete:
+            
+            let personToRemove = sections[indexPath.section].persons[indexPath.row]
+            
+            if let index = personArray.firstIndex(where: { $0 == personToRemove }) {
+                personArray.remove(at: index)
+            }
+            
+            sections[indexPath.section].persons.remove(at: indexPath.row)
+            
+            tableView.beginUpdates()
+            if sections[indexPath.section].persons.isEmpty {
+                
+                sections.remove(at: indexPath.section)
+                
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }
+            tableView.endUpdates()
         default: break
         }
     }
@@ -94,16 +115,5 @@ extension ListViewController: NewPersonVCDelegate {
         personArray.append(person)
         groupPersons()
     }
-}
-
-
-
-
-
-
-
-
-struct aaaa {
-    var a: String
 }
 
